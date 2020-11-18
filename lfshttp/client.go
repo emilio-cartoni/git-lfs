@@ -239,11 +239,13 @@ func (c *Client) ExtraHeadersFor(req *http.Request) http.Header {
 	copy := make(http.Header, len(req.Header))
 	for k, vs := range req.Header {
 		copy[k] = vs
+		tracerx.Printf("H1 k:%v vs:%v", k, vs)
 	}
 
 	for k, vs := range extraHeaders {
 		for _, v := range vs {
 			copy[k] = append(copy[k], v)
+			tracerx.Printf("H2 k:%v v:%v", k, v)
 		}
 	}
 	return copy
