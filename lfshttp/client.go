@@ -231,10 +231,11 @@ func (c *Client) sshResolveWithRetries(e Endpoint, method string) (*sshAuthRespo
 }
 
 func (c *Client) ExtraHeadersFor(req *http.Request) http.Header {
+    tracerx.Prinf("ExtraHeadersFor")
 	extraHeaders := c.extraHeaders(req.URL)
-	if len(extraHeaders) == 0 {
-		return req.Header
-	}
+//	if len(extraHeaders) == 0 {
+//		return req.Header
+//	}
 
 	copy := make(http.Header, len(req.Header))
 	for k, vs := range req.Header {
